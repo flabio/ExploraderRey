@@ -1,0 +1,158 @@
+{% load staticfiles %}
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td><img src="/static/images/logo.png" width="100" height="90" /></td>
+                    <td style="text-align:center">
+                        <span class="texto-titulo"> Concilio de las ASAMBLEAS DE DIOS de Colombia</span> <br>
+                        <span class="texto-titulo">PASTORAL A LA NIÑEZ</span><br>
+                        <span class="texto-titulo">EXPLORADORES DEL REY</span><br>
+
+                    </td>
+                    <td>
+                        <img src="/static/images/logo4.png" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h4 style="text-align:center; padding-top:15px">HOJA DE VIDA PARA LÍDERES</h4>
+        <br>
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td class="old-texto">Nombre Completo</td>
+                    <td>{{perfil.user.get_full_name}}</td>
+                    <td class="old-texto">Identificación</td>
+                    <td>{{perfil.identificacion}}</td>
+                    <td rowspan="3" colspan="1">
+                        {% if perfil.picture %}
+                        <img src="/{{ perfil.picture }}" class="rounded-circle mx-auto d-block" style="margin-left: 40px;" /> {% else%}
+                        <img src="{% static 'images/default-profile-picture.jpg' %}" class="rounded-circle mx-auto d-block" style="margin-left: 40px; height: 100px; width: 100px;" /> {% endif %}
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Lugar de Nacimiento</td>
+                    <td>{{perfil.lugar}}</td>
+                    <td class="old-texto">Fecha de Nacimiento</td>
+                    <td>{{perfil.fecha_nacimiento|date:"Y-m-d"}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Dirección Residencia</td>
+                    <td>{{perfil.direccion}}</td>
+                    <td class="old-texto">Teléfono Residencia</td>
+                    <td>{{perfil.telefono}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto"> Dirección Electrónica</td>
+                    <td>{{perfil.correo}}</td>
+                    <td class="old-texto" colspan="2">Celular</td>
+                    <td>{{perfil.celular}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Destacamento</td>
+                    <td>{{perfil.descatamento.nombre}}</td>
+                    <td class="old-texto" colspan="2">Número</td>
+                    <td>{{perfil.numero}}</td>
+
+                </tr>
+                <tr>
+                    <td class="old-texto">Distrito</td>
+                    <td>{{perfil.distrito}}</td>
+                    <td class="old-texto" colspan="2">Sección</td>
+                    <td>{{perfil.seccion}}</td>
+                </tr>
+
+                <tr>
+                    <td class="old-texto">Iglesia</td>
+                    <td>{{perfil.iglesia.nombre}}</td>
+                    <td class="old-texto" colspan="2">Dirección Iglesia</td>
+                    <td>{{perfil.iglesia.direccion}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Nombre del Pastor Principal</td>
+                    <td>{{perfil.iglesia.pastor}}</td>
+                    <td class="old-texto" colspan="2">Teléfono Iglesia</td>
+                    <td>{{perfil.iglesia.telefono}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Profesión u Oficio</td>
+                    <td>{{perfil.profesion}}</td>
+                    <td class="old-texto" colspan="2">Estado Civil y Filiación</td>
+                    <td>{{perfil.estado_civil}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Cargo en iglesia y/o destacamento:</td>
+                    <td>{{perfil.cargo}}</td>
+                    <td class="old-texto" colspan="2">Año de conversión:</td>
+                    <td>{{perfil.fecha_conversion}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Bautismo en Agua</td>
+                    <td>{{perfil.bautismo_agua}}</td>
+                    <td class="old-texto" colspan="2">Bautismo en Espíritu</td>
+                    <td>{{perfil.bautismo_espiritu}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <h5 class="texto-titulos">ESTUDIOS REALIZADOS</h5>
+        <br>
+        <table class="table table-bordered">
+
+            <body>
+                <tr>
+                    <td class="old-texto">Primaria: Años Cursados</td>
+                    <td>{{perfil.primaria_cursado}}</td>
+                    <td class="old-texto">Secundaria: Años Cursados</td>
+                    <td>{{perfil.secundaria_cursado}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Universitarios: Semestres Cursados</td>
+                    <td>{{perfil.semestre}}</td>
+                    <td class="old-texto">Titulo Obtenido:</td>
+                    <td>{{perfil.titulo_obtenido}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto">Posgrados</td>
+                    <td>{{perfil.posgrados}}</td>
+                    <td class="old-texto">Teológicos:</td>
+                    <td>{{perfil.teologicos}}</td>
+                </tr>
+                <tr>
+                    <td class="old-texto" colspan="2"> Otros</td>
+                    <td colspan="2">{{perfil.otros}}</td>
+                </tr>
+                </tbody>
+        </table>
+        <br>
+        <h5 class="texto-titulos">NIVELES DE ACADEMIA MINISTERIAL</h5>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ADIESTRAMIENTO</th>
+                    <th>FECHA</th>
+                    <th>LUGAR</th>
+                </tr>
+            </thead>
+
+            <body>
+                {% for item in academia %}
+                <tr>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.fecha|date:"Y-m-d"}}</td>
+                    <td>{{item.lugar}}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+        </table>
+    </div>
+</div>

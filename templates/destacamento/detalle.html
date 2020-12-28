@@ -1,0 +1,146 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Detalle del Destacamento</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Destacamento</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'destacamento:index'%}">Destacamento</a></li>
+<li><a href="{% url 'destacamento:index'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+
+    <div class="card">
+        <div class="card-body">
+            <div class="mx-auto d-block">
+                {% if destacamento.imagen %}
+                <img class="rounded-circle mx-auto d-block" src="{{ destacamento.imagen.url }}" style="    max-width: 100px;height: 100px;"> {% else %}
+                <img class="rounded-circle mx-auto d-block" src="/media/400px-Face-smile.svg.png" style="    max-width: 100px;max-height: 100px"> {% endif%}
+                <h5 class="text-sm-center mt-2 mb-1">{{destacamento.nombre}}</h5>
+
+            </div>
+            <hr>
+            <div class="card-text text-sm-center">
+                <div class="weather-category twt-category" style="color: black!important;">
+                    <ul>
+                        <li class="active">
+                            <h5> <strong> Iglesia</strong></h5>
+                            {{destacamento.iglesia.nombre}}
+                        </li>
+                        <li>
+                            <h5><strong>Comandante de Sección</strong></h5>
+                            {{destacamento.seccion.user.first_name}} {{destacamento.seccion.user.last_name}}
+                        </li>
+                        <li>
+                            <h5><strong>Sección</strong></h5>
+                            {{destacamento.seccion.seccion}}
+                        </li>
+                    </ul>
+                </div>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+
+                            <th>Distrito</th>
+                            <td>{{destacamento.distrito}}</td>
+                            <th>Número</th>
+                            <td>{{destacamento.numero}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#myModal" data-backdrop='static' data-keyboard='false'>
+                     <i class="fa fa-plus"></i> Añadir Grupo
+                 </button>
+                <hr>
+            </div>
+
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+
+    </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Añadir Grupo</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'destacamento:crear-grupo-destacamento'%}">
+                    {% csrf_token %}
+
+                    <div class="row ">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">Grupo</div>
+                                <select class="form-control select2" name="dgrupo" style="width: 100%">
+                                    <option value="">[Seleccione una opción]</option>
+                                    {% for item in grupos %}
+                                     <option value="{{item.grupo_id}}">{{item.nombre}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <input type="hidden" name="destacamento" value="{{destacamento.pk}}">
+                    <button type="submit" class="btn btn-success  grupo-destacamento-enviar">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cerrar
+                    </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/logica/grupo-destacamento.js' %}"></script>
+<script>
+    const getDestacamento = (id) => {
+
+        table = $('#listaTable').DataTable({
+            "processing": true,
+            "ajax": 'http://127.0.0.1:8000/destacamento/lista-grupo-destacamento/' + id,
+
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+            "columns": [
+
+                {
+                    title: "Foto",
+                    width: "5%",
+                    data: null,
+                    render: function(data, type, row, meta) {
+
+                        return "<img class='user-avatar rounded-circle' src='/media/" + (row.imagen === null || row.imagen === "" ? '400px-Face-smile.svg.png' : row.imagen) + "' alt='" + row.nombre + "'>";
+                    }
+                }, {
+                    "title": "Destacamento",
+                    "data": "nombre"
+                },
+
+
+
+                {
+                    title: "Acción",
+                    width: "12%",
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return "<a href='#' class='btn btn-danger btn-sm eliminar' onclick=getEliminar(" + row.pk + ") ><i class='fa fa-trash'></i> Eliminar</a>";
+                    }
+                }
+            ],
+        });
+    };
+    getDestacamento('{{destacamento.pk}}');
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Editar Iglesia</title>
+{% endblock %} {% block container_breadcrumb_title %}
+
+
+<h1>Editar Iglesia</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a>Iglesia</a></li>
+<li><a href="{% url 'iglesia:index'%}">Index</a></li>
+
+{% endblock %} {% block container %} {% load static %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+
+            <div class="card-header">
+                <strong class="card-title">Editar de Iglesia</strong>
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'iglesia:editar' iglesia.pk %}" enctype="multipart/form-data">
+                    {% include "iglesia/form.html" %}
+                    <hr>
+                    <button type="submit" class="btn btn-success iglesia-enviar">
+                <i class="fa fa-save"></i> Guardar
+            </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/logica/iglesia.js' %}"></script>
+
+{% endblock %}

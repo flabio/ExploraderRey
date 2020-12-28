@@ -1,0 +1,32 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Explorador</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Listado de Explorador</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'explorador:listado-explorador'%}">Explorador</a></li>
+<li><a href="{% url 'explorador:listado-explorador'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+
+    <a type="button" class="btn btn-outline-success" href="{% url 'explorador:crear-explorador' 'explorador'%}">
+        <i class='fa fa-plus'></i> Crear Explorador
+    </a>
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Listado de Explorador</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+
+<script src="/static/js/logica/user/user_listado.js"></script>
+<script>
+    getListadoUser('explorador')
+</script>
+
+{% endblock %}

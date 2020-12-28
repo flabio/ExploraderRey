@@ -1,0 +1,22 @@
+ {% csrf_token %}
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_nivel_aca_minis.nombre.label}}</div>
+            <div class="">{{form_nivel_aca_minis.nombre}}</div>
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_nivel_aca_minis.lugar.label}}</div>
+            <div>{{form_nivel_aca_minis.lugar}}</div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_nivel_aca_minis.fecha.label}}</div>
+            <div>{{form_nivel_aca_minis.fecha}}</div>
+        </div>
+    </div>
+</div>

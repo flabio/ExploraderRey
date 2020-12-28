@@ -1,0 +1,35 @@
+{% csrf_token %}
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.nombre.label}}</div>
+            <input class="form-control {% if form.nombre.errors %}is-invalid{% endif %}" type="text" name="nombre" placeholder="nombre" value="{% if form.errors %}{{ form.nombre.value }}{% else %}{{ destacamento.nombre }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.distrito.label}}</div>
+            <input class="form-control {% if form.distrito.errors %}is-invalid{% endif %}" type="text" name="distrito" placeholder="distrito" value="{% if form.errors %}{{ form.distrito.value }}{% else %}{{ destacamento.distrito }}{% endif %}" />
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.numero.label}}</div>
+            <input class="form-control {% if form.numero.errors %}is-invalid{% endif %}" type="number" name="numero" placeholder="número" value="{% if form.errors %}{{ form.numero.value }}{% else %}{{ destacamento.numero }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.seccion.label}}</div>
+            <input class="form-control {% if form.telefono.errors %}is-invalid{% endif %}" type="text" name="telefono" placeholder="teléfono" value="{% if form.errors %}{{ form.telefono.value }}{% else %}{{ destacamento.telefono }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.estado.label}}</div>
+            <div class="">{{form.estado}}</div>
+        </div>
+    </div>
+</div>

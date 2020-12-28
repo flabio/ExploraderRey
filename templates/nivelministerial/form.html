@@ -1,0 +1,31 @@
+ {% csrf_token %}
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.nombre.label}}</div>
+            <input class="form-control {% if form.nombre.errors %}is-invalid{% endif %}" type="text" name="nombre" placeholder="nombre" value="{% if form.errors %}{{ form.nombre.value }}{% else %}{{ nivelministerial.nombre }}{% endif %}" />
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.fecha.label}}</div>
+            <input class="form-control {% if form.fecha.errors %}is-invalid{% endif %}" type="date" name="fecha" placeholder="fecha" value="{% if form.errors %}{{ form.fecha.value }}{% else %}{{ nivelministerial.fecha }}{% endif %}" />
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.lugar.label}}</div>
+            <input class="form-control {% if form.lugar.errors %}is-invalid{% endif %}" type="text" name="lugar" placeholder="lugar" value="{% if form.errors %}{{ form.lugar.value }}{% else %}{{ nivelministerial.lugar}}{% endif %}" />
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.estado.label}}</div>
+            <div class="">{{form.estado}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Nivel Ministerial</title>
+{% endblock %} {% block breadcrumbs_content %} {% include "nivelministerial/breadcrumbs.html" %} {% endblock %} {% block container %} {% load static %}
+<div class="col-lg-12">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" data-backdrop='static' data-keyboard='false'>
+        <i class='fa fa-plus'></i> Crear Nivel Ministerial
+    </button>
+
+    <hr>
+    <div class="card">
+        {%for msg in messages%}
+        <div class="alert alert-danger">{{msg}} {{msg.SUCCESS}}</div>
+        {% endfor%}
+        <div class="card-header">
+            <strong class="card-title">Listado de Nivel Ministerial</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable"></table>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crear Nivel Ministerial</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'iglesia:crear-iglesia'%}">
+                    {% include "nivelministerial/form.html" %}
+                    <hr>
+                    <button type="button" class="btn btn-success  enviar">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cerrar
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/logica/nivelministerial/nivelministerial.js' %}"></script>
+{% endblock %}

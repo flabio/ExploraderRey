@@ -1,0 +1,80 @@
+{% load static %}
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                
+                <!-- <li class="menu-title">Menu</li>
+                {% for i in request.user.groups.all %}
+                <li>
+                    <a href="/"><i class="fa fa-circle"></i> {{i.name}}</a>
+                </li>
+                {% endfor %} -->
+                <li>
+                    <i class="fas fa-chart-bar" style="display:none"></i>
+                    <a href="/">
+                        <i class="fas fa-chart-bar"></i> Dashboard
+                    </a>
+                </li>
+                {% if user.groups.all.0.name == 'admin' %}
+                <li>
+                    <a href="{% url 'administrador:listado-admin'%}">
+                        <i class="fas fa-users"></i> Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'capellan:listado-capellan'%}">
+                        <i class="fas fa-users"></i> Capellán
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'mayor:listado-mayor'%}">
+                        <i class="fas fa-users"></i> Mayor
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'comandante:listado-comandante'%}">
+                        <i class="fas fa-users"></i> Comandante
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'explorador:listado-explorador'%}">
+                        <i class="fas fa-users"></i> Explorador
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="{% url 'iglesia:index'%}">
+                        <i class="fas fa-church"></i> Iglesia
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'destacamento:index'%}">
+                        <i class="fas  fa-object-group"></i> Destacamento
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'grupos:index'%}">
+                        <i class="fas fa-object-ungroup"></i> Grupo
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'patrulla:index'%}">
+                        <i class="fas fa-paw"></i> Patrulla
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'eps:index'%}">
+                        <i class="fas fa-hospital"></i> Eps
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'eps:index'%}">
+                        <i class="fas fa-map-signs"></i> Ubicación
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+</aside>

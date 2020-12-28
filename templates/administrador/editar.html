@@ -1,0 +1,273 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Editar Usuario</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Editar Usuario</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'administrador:listado-admin'%}">Usuario</a></li>
+<li><a href="{% url 'administrador:listado-admin'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+<a href="{% url 'administrador:listado-admin'%}" class="btn btn-outline-primary">
+    <i class="fa fa-arrow-left"></i> Volver
+</a>
+<div class="row mt-2">
+    <div class="col-lg-12">
+        <div class="card">
+            <br>
+            <div class="card-body">
+                <form method="post" action="{% url 'administrador:editar' perfil.user_id %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.first_name.label}}</div>
+                                {{form.first_name}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.last_name.label}}</div>
+                                {{form.last_name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.identificacion.label}}</div>
+                                {{form_perfil.identificacion}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.tipo_identificacion.label}}</div>
+                                {{form_perfil.tipo_identificacion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.fecha_nacimiento.label}}</div>
+                                {{form_perfil.fecha_nacimiento}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.lugar_nacimiento.label}}</div>
+                                {{form_perfil.lugar_nacimiento}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.estado_civil.label}}</div>
+                                {{form_perfil.estado_civil}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.genero.label}}</div>
+                                {{form_perfil.genero}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.tipo_sangre.label}}</div>
+                                {{form_perfil.tipo_sangre}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.eps.label}}</div>
+                                {{form_perfil.eps}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.direccion.label}}</div>
+                                {{form_perfil.direccion}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.telefono.label}}</div>
+                                {{form_perfil.telefono}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.celular.label}}</div>
+                                {{form_perfil.celular}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.anion_conversion.label}}</div>
+                                {{form_perfil.anion_conversion}}
+                            </div>
+                        </div>
+                        <input type='hidden' class="form-control" name="group" value="{{rol}}">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.email.label}}</div>
+                                {{form.email}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.profesion.label}}</div>
+                                {{form_perfil.profesion}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.primaria.label}}</div>
+                                {{form_perfil.primaria}}
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.primaria_anio_cursado.label}}</div>
+                                {{form_perfil.primaria_anio_cursado}}
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.secundarias.label}}</div>
+                                {{form_perfil.secundarias}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.segundaria_anio_cursado.label}}</div>
+                                {{form_perfil.segundaria_anio_cursado}}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">Iglesia</div>
+                                <select class="form-control select2 iglesia" name="iglesia" onchange="traerDestacamento(this.value)">
+                                <option value="">[Seleccione la Opcion]</option>
+                                {% for i in iglesia %}
+                                {% if perfil.Destacamento.iglesia.iglesia_id == i.iglesia_id%}
+                                <option value="{{i.iglesia_id}}" selected>{{i.nombre}} </option>
+                                {% endif %}
+                                <option value="{{i.iglesia_id}}">{{i.nombre}} </option>
+                                {% endfor%}
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">Destacamento</div>
+                                <select class="form-control select2 destacamento" data-id="{{perfil.Destacamento_id}}" name="destacamento">
+                                <option value="">[Seleccione la Opcion]</option>
+                            </select>
+                            </div>
+                        </div>
+                 
+                    </div> -->
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.is_staff.label}}</div>
+                                {{form.is_staff}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.bautismo_agua.label}}</div>
+                                {{form_perfil.bautismo_agua}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.bautismo_espiritu.label}}</div>
+                                {{form_perfil.bautismo_espiritu}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.estado.label}}</div>
+                                {{form_perfil.estado}}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.password1.label}}</div>
+                                {{form.password1}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.password2.label}}</div>
+                                {{form.password2}}
+                            </div>
+                        </div>
+                        
+                    </div> -->
+                    <input type="hidden" id="data-id" value="{{perfil.user_id}}" name="id">
+                    <hr>
+                    <button type="button" class="btn btn-success  enviar">
+                <i class="fa fa-save"></i> Guardar
+          
+            </form>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+</div>
+</div>
+
+
+<script src="{% static 'js/logica/admin/admin-registrar.js' %}"></script>
+<script>
+   
+    
+    document.querySelector('#id_first_name').value='{{perfil.user.first_name}}';
+    document.querySelector('#id_last_name').value='{{perfil.user.last_name}}';
+    document.querySelector('#id_identificacion').value='{{perfil.identificacion}}';
+    document.querySelector('#id_tipo_identificacion').value='{{perfil.tipo_identificacion}}';
+    document.querySelector('#id_fecha_nacimiento').value='{{perfil.fecha_nacimiento|date:"Y-m-d"}}';
+    document.querySelector('#id_lugar_nacimiento').value='{{perfil.lugar_nacimiento}}';
+    document.querySelector('#id_estado_civil').value='{{perfil.estado_civil}}';
+    document.querySelector('#id_genero').value='{{perfil.genero}}';
+    document.querySelector('#id_tipo_sangre').value='{{perfil.tipo_sangre}}';
+    $('#id_eps').val('{{perfil.eps_id}}').trigger('change');
+    document.querySelector('#id_profesion').value='{{perfil.profesion}}';
+    document.querySelector('#id_direccion').value='{{perfil.direccion}}';
+    document.querySelector('#id_telefono').value='{{perfil.telefono}}';
+    document.querySelector('#id_celular').value='{{perfil.celular}}';
+
+    document.querySelector('#id_anion_conversion').value='{{perfil.anion_conversion}}';
+    document.querySelector('#id_primaria_anio_cursado').value='{{perfil.primaria_anio_cursado}}';
+    document.querySelector('#id_segundaria_anio_cursado').value='{{perfil.segundaria_anio_cursado}}';
+    
+    document.querySelector('#id_email').value='{{perfil.user.email}}';
+    document.querySelector('#id_is_staff').checked='{{perfil.user.is_staff}}';
+
+    document.querySelector("#id_primaria").checked = '{{perfil.primaria}}'=='True'?true:false;
+    document.querySelector("#id_secundarias").checked = '{{perfil.secundarias}}'=='True'?true:false;
+
+
+    document.querySelector("#id_bautismo_agua").checked = '{{perfil.bautismo_agua}}'=='True'?true:false;
+    document.querySelector("#id_bautismo_espiritu").checked = '{{perfil.bautismo_espiritu}}'=='True'?true:false;
+    document.querySelector("#id_estado").checked = '{{perfil.estado}}'=='True'?true:false;
+
+</script>
+{% endblock %}

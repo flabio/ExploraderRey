@@ -1,0 +1,43 @@
+ {% csrf_token %}
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.universitarios.label}}</div>
+            <div class="">{{form_estudio_realizado.universitarios}}</div>
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.num_semestre.label}}</div>
+            <input class="form-control {% if form_estudio_realizado.num_semestre.errors %}is-invalid{% endif %}" type="number" name="num_semestre" placeholder="número semestre" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.titulo_obtenido.label}}</div>
+            <input class="form-control {% if form_estudio_realizado.titulo_obtenido.errors %}is-invalid{% endif %}" type="text" name="titulo_obtenido" placeholder="titulo obtenido" />
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.posgrado.label}}</div>
+            <input class="form-control {% if form_estudio_realizado.posgrado.errors %}is-invalid{% endif %}" type="text" name="posgrado" placeholder="posgrado" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.teologicos.label}}</div>
+            <input class="form-control {% if form_estudio_realizado.teologicos.errors %}is-invalid{% endif %}" type="text" name="teologicos" placeholder="teologicos" />
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form_estudio_realizado.estado.label}}</div>
+            <div class="">{{form_estudio_realizado.estado}}</div>
+        </div>
+    </div>
+</div>

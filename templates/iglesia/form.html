@@ -1,0 +1,35 @@
+ {% csrf_token %}
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.nombre.label}}</div>
+            <input class="form-control {% if form.nombre.errors %}is-invalid{% endif %}" type="text" name="nombre" placeholder="nombre" value="{% if form.errors %}{{ form.nombre.value }}{% else %}{{ iglesia.nombre }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.correo.label}}</div>
+            <input class="form-control {% if form.correo.errors %}is-invalid{% endif %}" type="email" name="correo" placeholder="correo" value="{% if form.errors %}{{ form.correo.value }}{% else %}{{ iglesia.correo }}{% endif %}" />
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.direccion.label}}</div>
+            <input class="form-control {% if form.direccion.errors %}is-invalid{% endif %}" type="text" name="direccion" placeholder="dirección" value="{% if form.errors %}{{ form.direccion.value }}{% else %}{{ iglesia.direccion }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.telefono.label}}</div>
+            <input class="form-control {% if form.telefono.errors %}is-invalid{% endif %}" type="text" name="telefono" placeholder="teléfono" value="{% if form.errors %}{{ form.telefono.value }}{% else %}{{ iglesia.telefono }}{% endif %}" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            <div class="form-control-label">{{form.estado.label}}</div>
+            <div class="">{{form.estado}}</div>
+        </div>
+    </div>
+</div>

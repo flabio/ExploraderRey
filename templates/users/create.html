@@ -1,0 +1,238 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Registrar {{rol}}</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>{{rol|capfirst }}</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="/{{rol}}/listado-{{rol}}">{{rol}}</a></li>
+<li><a href="/{{rol}}/listado-{{rol}}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Registrar {{rol|capfirst}}</strong>
+        </div>
+        <br>
+        <div class="card-body">
+            <form method="post" action="{% url 'users:crear-user' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.first_name.label}}</div>
+                            {{form.first_name}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.last_name.label}}</div>
+                            {{form.last_name}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.identificacion.label}}</div>
+                            {{form_perfil.identificacion}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.tipo_identificacion.label}}</div>
+                            {{form_perfil.tipo_identificacion}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.fecha_nacimiento.label}}</div>
+                            {{form_perfil.fecha_nacimiento}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.lugar_nacimiento.label}}</div>
+                            {{form_perfil.lugar_nacimiento}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.estado_civil.label}}</div>
+                            {{form_perfil.estado_civil}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.genero.label}}</div>
+                            {{form_perfil.genero}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.tipo_sangre.label}}</div>
+                            {{form_perfil.tipo_sangre}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.eps.label}}</div>
+                            {{form_perfil.eps}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.direccion.label}}</div>
+                            {{form_perfil.direccion}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.telefono.label}}</div>
+                            {{form_perfil.telefono}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.celular.label}}</div>
+                            {{form_perfil.celular}}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.anion_conversion.label}}</div>
+                            {{form_perfil.anion_conversion}}
+                        </div>
+                    </div>
+                    <input type='hidden' class="form-control" name="group" value="{{rol}}">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.email.label}}</div>
+                            {{form.email}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.primaria.label}}</div>
+                            {{form_perfil.primaria}}
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.primaria_anio_cursado.label}}</div>
+                            {{form_perfil.primaria_anio_cursado}}
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.secundarias.label}}</div>
+                            {{form_perfil.secundarias}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.segundaria_anio_cursado.label}}</div>
+                            {{form_perfil.segundaria_anio_cursado}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">Iglesia</div>
+                            <select class="form-control select2 iglesia" name="iglesia" onchange="traerDestacamento(this.value)">
+                                <option value="">[Seleccione la Opcion]</option>
+                                {% for i in iglesia %}
+                                <option value="{{i.iglesia_id}}">{{i.nombre}}</option>
+                                {% endfor%}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">Destacamento</div>
+                            <select class="form-control select2 destacamento" name="destacamento">
+                                <option value="">[Seleccione la Opcion]</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.is_staff.label}}</div>
+                            {{form.is_staff}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.bautismo_agua.label}}</div>
+                            {{form_perfil.bautismo_agua}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.bautismo_espiritu.label}}</div>
+                            {{form_perfil.bautismo_espiritu}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form_perfil.estado.label}}</div>
+                            {{form_perfil.estado}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.password1.label}}</div>
+                            {{form.password1}}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="form-control-label">{{form.password2.label}}</div>
+                            {{form.password2}}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <input type="hidden" id="data-id" value="" name="id">
+                <input type="hidden"  value="{{rol}}" name="group">
+                <button type="submit" class="btn btn-success  enviar">
+                <i class="fa fa-save"></i> Guardar
+          
+            </form>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+
+
+
+
+<script src="{% static 'js/logica/mayor/mayor-registrar.js' %}"></script>
+<script>
+    $(document).on('ready', () => {
+        $('#id_password1').addClass('form-control')
+        $('#id_password2').addClass('form-control')
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Iglesia</title>
+{% endblock %} {% block container_breadcrumb_title %}
+
+
+<h1>Listado de Iglesia</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a>Iglesia</a></li>
+<li><a href="{% url 'iglesia:index'%}">Index</a></li>
+
+{% endblock %} {% block container %} {% load static %}
+
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" data-backdrop='static' data-keyboard='false'>
+        <i class='fa fa-plus'></i> Crear Iglesia
+    </button>
+
+    <hr>
+    <div class="card">
+        {%for msg in messages%}
+        <div class="alert alert-danger">{{msg}} {{msg.SUCCESS}}</div>
+        {% endfor%}
+        <div class="card-header">
+            <strong class="card-title">Listado de Iglesia</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable"></table>
+        </div>
+
+        <!-- /.table-stats -->
+    </div>
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crear Iglesia</h4>
+            </div>
+            <form method="post" action="{% url 'iglesia:crear-iglesia'%}">
+
+                <div class="modal-body">
+                    {% include "iglesia/form.html" %}
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success  iglesia-enviar">
+                    <i class="fa fa-save"></i> Guardar
+                </button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">
+                    <i class="fa fa-times"></i> Cerrar
+                </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'js/logica/iglesia.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Mayor</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1> Mayor</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'mayor:listado-mayor'%}">Comandante Mayor</a></li>
+<li><a href="{% url 'mayor:listado-mayor'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+<div class="col-lg-12">
+    <a type="button" class="btn btn-outline-success" href="{% url 'mayor:crear-mayor' 'mayor'%}">
+        <i class='fa fa-plus'></i> Crear Mayor
+    </a>
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Listado de Mayor</strong>
+        </div>
+        <br>
+        <div class="mb-5">
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+        
+        <!-- /.table-stats -->
+    </div>
+</div>
+<script src="/static/js/logica/user/user_listado.js"></script>
+<script>
+    getListadoUser('mayor')
+</script>
+
+{% endblock %}

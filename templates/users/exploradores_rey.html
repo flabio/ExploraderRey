@@ -1,0 +1,172 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Exploradores del Rey</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Exploradores del Rey</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'users:exploradores-rey'%}">Exploradores del Rey</a></li>
+<li><a href="{% url 'users:exploradores-rey'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+<div class="col-lg-12">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" data-backdrop='static' data-keyboard='false'>
+        <i class='fa fa-plus'></i> Crear Exploradores del Rey
+    </button>
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Listado de Exploradores del Rey</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crear Exploradores del Rey</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'users:crear-exploradore-rey'%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.first_name.label}}</div>
+                                {{form.first_name}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.last_name.label}}</div>
+                                {{form.last_name}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.identificacion.label}}</div>
+                                {{form_perfil.identificacion}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.tipo_identificacion.label}}</div>
+                                {{form_perfil.tipo_identificacion}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.fecha_nacimiento.label}}</div>
+                                {{form_perfil.fecha_nacimiento}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.lugar_nacimiento.label}}</div>
+                                {{form_perfil.lugar_nacimiento}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.genero.label}}</div>
+                                {{form_perfil.genero}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.tipo_sangre.label}}</div>
+                                {{form_perfil.tipo_sangre}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.eps.label}}</div>
+                                {{form_perfil.eps}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.direccion.label}}</div>
+                                {{form_perfil.direccion}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.telefono.label}}</div>
+                                {{form_perfil.telefono}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.celular.label}}</div>
+                                {{form_perfil.celular}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.anion_conversion.label}}</div>
+                                {{form_perfil.anion_conversion}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.bautismo_agua.label}}</div>
+                                {{form_perfil.bautismo_agua}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.bautismo_espiritu.label}}</div>
+                                {{form_perfil.bautismo_espiritu}}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form_perfil.estado.label}}</div>
+                                {{form_perfil.estado}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.email.label}}</div>
+                                {{form.email}}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-success  enviar">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal" onclick="Cerrar()">
+                        <i class="fa fa-times"></i> Cerrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/logica/users.js' %}"></script>
+{% endblock %}

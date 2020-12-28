@@ -1,0 +1,77 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Grupo</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Grado</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'grupos:index'%}">Grupo</a></li>
+<li><a href="{% url 'grupos:index'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+<div class="col-lg-12">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#myModal" data-backdrop='static' data-keyboard='false'>
+        <i class='fa fa-plus'></i> Crear Grupo
+    </button>
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Listado de Grupo</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crear Grupo</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'grupos:crear-grupo'%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row ">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="file-loading">
+                                    <input class="form-control {% if form.imagen.errors %}is-invalid{% endif %} input-21" type="file" name="imagen" placeholder="imagen" value="{% if form.errors %}{{ form.imagen.value }}{% else %}{{ grupo.imagen }}{% endif %}" type="file" accept="image/*"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.nombre.label}}</div>
+                                <input class="form-control {% if form.nombre.errors %}is-invalid{% endif %}" type="text" name="nombre" placeholder="nombre" value="{% if form.errors %}{{ form.nombre.value }}{% else %}{{ grupo.nombre }}{% endif %}" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="form-control-label">{{form.estado.label}}</div>
+                                <div class="">{{form.estado}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-success  grupo-enviar">
+                        <i class="fa fa-save"></i> Guardar
+                    </button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal" onclick="Cerrar()">
+                        <i class="fa fa-times"></i> Cerrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/logica/grupo.js' %}"></script>
+{% endblock %}

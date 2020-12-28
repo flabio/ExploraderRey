@@ -1,0 +1,32 @@
+{% extends "main.html" %} {% block head_content %}
+<title>Listado de Capellán</title>
+{% endblock %} {% block container_breadcrumb_title %}
+<h1>Listado de Capellán</h1>
+
+{% endblock %} {% block container_breadcrumb %}
+<li><a href="{% url 'capellan:listado-capellan'%}">Capellán</a></li>
+<li><a href="{% url 'capellan:listado-capellan'%}">Index</a></li>
+{% endblock %} {% block container %} {% load static %}
+
+    <a type="button" class="btn btn-outline-success" href="{% url 'capellan:crear-capellan' 'capellan'%}">
+        <i class='fa fa-plus'></i> Crear Capellán
+    </a>
+
+    <hr>
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">Listado de Capellán</strong>
+        </div>
+        <br>
+        <div class="">
+            <table id="listaTable" class="table table-bordered table-striped dataTable" width="100%"></table>
+        </div>
+        <!-- /.table-stats -->
+    </div>
+
+<script src="/static/js/logica/user/user_listado.js"></script>
+<script>
+    getListadoUser('capellan')
+</script>
+
+{% endblock %}
