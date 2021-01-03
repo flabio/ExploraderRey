@@ -28,6 +28,7 @@ urlpatterns = [
     # path('users/login/', users_views.login_view,name="login"),
     # path('users/logout/', users_views.logout_view,name="logout"),
     #path('/',include(('app.users.urls','users'), namespace='users')),
+    path('dashboard/', include(('app.dashboard.urls', 'dashboard'), namespace='dashboard')),
     path('estudiorealizado/', include(('app.estudiorealizado.urls', 'estudiorealizado'), namespace='estudiorealizado')),
     path('nivelministerial/', include(('app.nivelministerial.urls', 'nivelministerial'), namespace='nivelministerial')),
     path('iglesia/', include(('app.iglesia.urls', 'iglesia'), namespace='iglesia')),

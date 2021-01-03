@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     #local app
+    'app.dashboard',
     'app.iglesia',
     'app.nivelministerial',
     'app.destacamento',

@@ -13,8 +13,19 @@
                 <li>
                     <i class="fas fa-chart-bar" style="display:none"></i>
                     <a href="/">
-                        <i class="fas fa-chart-bar"></i> Dashboard
+                        <i class="fas fa-home"></i> Home
                     </a>
+                </li>
+                
+                <li class="menu-item-has-children">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                        <i class="fa fa-chart-bar"></i> Dashboard
+                    </a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-circle"></i><a href="page-login.html">General</a></li>
+                        <li><i class="fa fa-circle"></i><a href="page-login.html">Usuarios</a></li>
+                        <li><i class="fa fa-circle"></i><a href="{% url 'dashboard:dashboard-destacamento' %}">Destacamentos</a></li>
+                    </ul>
                 </li>
                 {% if user.groups.all.0.name == 'admin' %}
                 <li>

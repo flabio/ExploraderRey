@@ -10,6 +10,8 @@ from django.urls import reverse,reverse_lazy
 # Create your views here.
 
 
+def destacamentoDashboard(request):
+    return render(request, 'dashboard/index.html')
 def ListaDashboard(request):
     return render(request, 'dashboard/index.html')
     
